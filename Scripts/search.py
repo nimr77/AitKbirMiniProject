@@ -4,6 +4,7 @@ from colordescriptor import ColorDescriptor
 from searcher import Searcher
 import argparse
 import cv2
+
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--index", required = True,
