@@ -2054,6 +2054,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Use image`
+  String get useImage {
+    return Intl.message(
+      'Use image',
+      name: 'useImage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

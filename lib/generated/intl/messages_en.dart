@@ -203,6 +203,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "titleUpdateevent" : MessageLookupByLibrary.simpleMessage("Editing event"),
     "totalPrice" : MessageLookupByLibrary.simpleMessage("Total price"),
     "unTitled" : MessageLookupByLibrary.simpleMessage("Untitled"),
+    "useImage" : MessageLookupByLibrary.simpleMessage("Use image"),
     "user2Password" : MessageLookupByLibrary.simpleMessage("Confirm the password"),
     "userAlreadyInDB" : MessageLookupByLibrary.simpleMessage("Sorry, The user already in, Please try to login or forget password"),
     "userEmail" : MessageLookupByLibrary.simpleMessage("Email"),

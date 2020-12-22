@@ -12,7 +12,7 @@ class _MySearchBarState extends State<MySearchBar> {
   TextEditingController searchText = TextEditingController();
   @override
   void initState() {
-    searchText.text = MySearch.me.textInput;
+    searchText.text = MySearch.me?.textInput ?? null;
     super.initState();
   }
 
@@ -24,7 +24,7 @@ class _MySearchBarState extends State<MySearchBar> {
         decoration: InputDecoration(
             hintText: S.of(context).search,
             prefixIcon: Icon(Icons.search_rounded),
-            border: OutlineInputBorder()),
+            border: InputBorder.none),
       ),
     );
   }

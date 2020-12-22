@@ -211,5 +211,6 @@
   "whenWillBeExpire": "When will be expire",
   "coupons": "Coupons",
   "couponsCode": "Coupons code",
-  "generateCode": "Generate code"
+  "generateCode": "Generate code",
+  "useImage": "Use image"
 }
