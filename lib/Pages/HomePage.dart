@@ -27,10 +27,24 @@ class _MyHomePageState extends State<MyHomePage> {
         setState(() {
           showImg = true;
         });
-      } else
+        if (!loading)
+          setState(() {
+            loading = true;
+          });
+      } else {
         setState(() {
           showImg = false;
+          if (loading) loading = false;
         });
+      }
+    });
+    MySearchController.myLoadingRes.onData((data) {
+      if (data != 0) {
+        if (loading)
+          setState(() {
+            loading = false;
+          });
+      }
     });
     super.initState();
   }
