@@ -2,6 +2,7 @@
 # import the necessary packages
 from colordescriptor import ColorDescriptor
 from glcmdescriptor import glcmDescriptor
+from shapedesciptor import shapeDescriptor
 import argparse
 import glob
 import cv2
@@ -15,11 +16,12 @@ args = vars(ap.parse_args())
 # initialize the color descriptor
 cd = ColorDescriptor((8, 12, 3))
 gd = glcmDescriptor()
+sh = shapeDescriptor()
 # open the output index file for writing
 output = open(args["index"], "w")
 # use glob to grab the image paths and loop over 
 
-collectionsPath = glob.glob("dataset" + "/*")
+collectionsPath = glob.glob(args["dataset"] + "/*")
 for collection in collectionsPath :
     for imagePath in glob.glob(collection  + "/*.jpg") : 
     	# extract the image ID (i.e. the unique filename) from the image
@@ -29,9 +31,12 @@ for collection in collectionsPath :
     	# describe the image
     	features_cd = cd.describe(image)
     	features_gd = gd.describe(image)
+    	features_sh = sh.describe(image)
     	# write the features to file
     	features_cd = [str(f) for f in features_cd]
     	features_gd = [str(f) for f in features_gd]
-    	output.write("%s,%s,%s\n" % (imageID,",".join(features_cd),",".join(features_gd) ))
+    	features_sh = [str(f) for f in features_sh]
+    
+    	output.write("%s,%s,%s,%s\n" % (imageID,",".join(features_cd),",".join(features_gd),','.join(features_sh)))
 # close the index file
 output.close()

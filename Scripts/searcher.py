@@ -9,7 +9,7 @@ class Searcher:
 		self.indexPath = indexPath
         
         
-	def search(self, queryFeatures, limit = 10):
+	def search(self, queryFeatures, limit = 20):
 		# initialize our dictionary of results
 		results = {}
         
