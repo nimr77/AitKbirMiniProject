@@ -2,7 +2,7 @@
 # import the necessary packages
 from utils.colordescriptor import ColorDescriptor
 from utils.glcmdescriptor import glcmDescriptor
-from utils.shapedesciptor import shapeDescriptor
+from utils.shapedescriptor import shapeDescriptor
 from searcher import Searcher
 import argparse
 import cv2
