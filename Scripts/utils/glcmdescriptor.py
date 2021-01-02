@@ -60,7 +60,7 @@ class glcmDescriptor:
 		for i in features_in:
 		    for j in i : 
 		       features.append(j)
-        # 
+         
 		return features
             
 
