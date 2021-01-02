@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # import the necessary packages
-from colordescriptor import ColorDescriptor
-from glcmdescriptor import glcmDescriptor
-from shapedesciptor import shapeDescriptor
+from utils.colordescriptor import ColorDescriptor
+from utils.glcmdescriptor import glcmDescriptor
+from utils.shapedesciptor import shapeDescriptor
 from searcher import Searcher
 import argparse
 import cv2

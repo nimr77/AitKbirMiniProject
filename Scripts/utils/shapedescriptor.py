@@ -5,7 +5,7 @@ Created on Sat Dec 26 04:43:34 2020
 @author: mouhs
 """
 
-from pyimagesearch.zernikemoments import ZernikeMoments
+from zernikemoments import ZernikeMoments
 import numpy as np
 import argparse
 import pickle
