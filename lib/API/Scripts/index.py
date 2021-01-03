@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 # import the necessary packages
+import sys
+sys.path.append("/home/nimr/ServerDevelopment/AitKbirMiniProject/lib/API/Scripts")
 from utils.colordescriptor import ColorDescriptor
 from utils.glcmdescriptor import glcmDescriptor
 from utils.shapedescriptor import shapeDescriptor
 from Models import MatrixObject, ImageObject
 from Database import mongo
-import argparse
 import glob
 import cv2
+import os
 
 # construct the argument parser and parse the arguments
 # ap = argparse.ArgumentParser()
@@ -28,12 +30,13 @@ def initData():
     """
     docstring
     """
-    COLLECTIONS_PATH =  '../Images/*'
+    mongo.cleanImages()
+    COLLECTIONS_PATH = glob.glob( "../../Images/*")
     for collection in COLLECTIONS_PATH:
         for imagePath in glob.glob(collection + "/*.jpg"):
         # extract the image ID (i.e. the unique filename) from the image
         # path and load the image itself
-            imagePath = imagePath[imagePath.rfind("/") + 1:]
+            tempImage = imagePath[imagePath.rfind("/") + 1:]
             image = cv2.imread(imagePath)
         # describe the image
             features_cd = cd.describe(image)
@@ -47,8 +50,8 @@ def initData():
             mat = MatrixObject.MatrixObject(
                 features_cd=features_cd, features_gd=features_gd, features_sh=features_sh)
             img = ImageObject.ImageObject(
-                imagePath=imagePath, imageUrl="", matrix=mat)
-            mongo.insertImage(img.__dict__)
+                imagePath=imagePath, imageUrl="", matrix=mat.toMap())
+            mongo.insertImage(img)
 
 
 # close the index file

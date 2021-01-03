@@ -1,10 +1,10 @@
-
 import os
-from flask import Flask, flash, request, redirect, url_for
+from flask import Flask, flash, request, redirect, url_for, Response
 # from flask_pymongo import PyMongo
 from flask_restful import Resource, Api
 from werkzeug.utils import secure_filename
 from Scripts.index import initData
+from Scripts.search import Search
 app = Flask(__name__)
 # app.config["MONGO_URI"] = "mongodb://Nimr:123456789@172.17.0.2:27017/myDatabase"
 # mongo = PyMongo(app)
@@ -12,6 +12,8 @@ api = Api(app)
 x = 0
 UPLOAD_FOLDER = './searchImage/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+
 class Quotes(Resource):
     def get(self):
         return {
@@ -36,7 +38,8 @@ class Upload(Resource):
         filename = secure_filename(f.filename)
         whereToSave = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         f.save(whereToSave)
-        return 'file uploaded successfully'
+        return Search(whereToSave)
+
 
 class initAPI(Resource):
     def get(self):
@@ -44,9 +47,12 @@ class initAPI(Resource):
         this will init the database
         """
         initData()
+        return {"status": 1, "message": "done"}
+
 api.add_resource(Quotes, '/')
-api.add_resource(Upload, '/uploader')
-api.add_resource(initAPI,'/setDatabase')
+api.add_resource(
+    Upload, '/uploader')
+api.add_resource(initAPI, '/setDatabase')
 
 if __name__ == '__main__':
     app.run(debug=True)
