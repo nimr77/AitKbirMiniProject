@@ -10,7 +10,7 @@ app = Flask(__name__)
 # mongo = PyMongo(app)
 api = Api(app)
 x = 0
-UPLOAD_FOLDER = './searchImage/'
+UPLOAD_FOLDER = '/home/nimr/ServerDevelopment/AitKbirMiniProject/searchImage'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
@@ -36,7 +36,7 @@ class Upload(Resource):
         # return response
         # for the moment we will send the data as JSON and URL Link
         filename = secure_filename(f.filename)
-        whereToSave = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        whereToSave = UPLOAD_FOLDER +"/"+filename
         f.save(whereToSave)
         return Search(whereToSave)
 

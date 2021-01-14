@@ -16,3 +16,8 @@ class ImageObject(object):
         docstring
         """
         return  self.__dict__
+    def toMapAll(self):
+        """
+        docstring
+        """
+        return  {"name":self.name,"":self.imageUrl,"matrix":self.matrix.__dict__}

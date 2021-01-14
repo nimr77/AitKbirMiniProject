@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from Models.ImageObject import ImageObject
-client = MongoClient("mongodb://adminNimr:123456789@172.17.0.2:27017/MyDatabase")
+client = MongoClient("mongodb://Nimr:123456789@172.17.0.2:27017/MyDatabase")
 
 
 def insertImage(imageObject:ImageObject):
@@ -20,3 +20,9 @@ def getImagesBasedOnImages():
     docstring
     """
     return client.get_database(name="MyDatabase").get_collection(name='Images').find()
+
+def findOnName(title):
+    """
+    docstring
+    """
+  return  client.get_database(name="MyDatabase").get_collection(name='Images').find({'name':'/'+title+'/'})
