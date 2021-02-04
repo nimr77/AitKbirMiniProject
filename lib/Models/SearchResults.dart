@@ -6,40 +6,36 @@ class MySearchResults {
 
 class SearchItem {
   String id;
-  String title;
-  String imageUrl;
-  bool good;
-  int alphaValue;
+  double distance;
+  String url;
+  String name;
 
 //<editor-fold desc="Data Methods" defaultstate="collapsed">
 
   SearchItem({
     @required this.id,
-    @required this.title,
-    @required this.imageUrl,
-    @required this.good,
-    @required this.alphaValue,
+    @required this.distance,
+    @required this.url,
+    @required this.name,
   });
 
   SearchItem copyWith({
     String id,
-    String title,
-    String imageUrl,
-    bool good,
-    int alphaValue,
+    double distance,
+    String url,
+    String name,
   }) {
     return new SearchItem(
       id: id ?? this.id,
-      title: title ?? this.title,
-      imageUrl: imageUrl ?? this.imageUrl,
-      good: good ?? this.good,
-      alphaValue: alphaValue ?? this.alphaValue,
+      distance: distance ?? this.distance,
+      url: url ?? this.url,
+      name: name ?? this.name,
     );
   }
 
   @override
   String toString() {
-    return 'SearchItem{id: $id, title: $title, imageUrl: $imageUrl, good: $good, alphaValue: $alphaValue}';
+    return 'SearchItem{id: $id, distance: $distance, url: $url, name: $name}';
   }
 
   @override
@@ -48,26 +44,20 @@ class SearchItem {
       (other is SearchItem &&
           runtimeType == other.runtimeType &&
           id == other.id &&
-          title == other.title &&
-          imageUrl == other.imageUrl &&
-          good == other.good &&
-          alphaValue == other.alphaValue);
+          distance == other.distance &&
+          url == other.url &&
+          name == other.name);
 
   @override
   int get hashCode =>
-      id.hashCode ^
-      title.hashCode ^
-      imageUrl.hashCode ^
-      good.hashCode ^
-      alphaValue.hashCode;
+      id.hashCode ^ distance.hashCode ^ url.hashCode ^ name.hashCode;
 
   factory SearchItem.fromMap(Map<String, dynamic> map) {
     return new SearchItem(
       id: map['id'] as String,
-      title: map['title'] as String,
-      imageUrl: map['imageUrl'] as String,
-      good: map['good'] as bool,
-      alphaValue: map['alphaValue'] as int,
+      distance: map['distance'] as double,
+      url: map['url'] as String,
+      name: map['name'] as String,
     );
   }
 
@@ -75,10 +65,9 @@ class SearchItem {
     // ignore: unnecessary_cast
     return {
       'id': this.id,
-      'title': this.title,
-      'imageUrl': this.imageUrl,
-      'good': this.good,
-      'alphaValue': this.alphaValue,
+      'distance': this.distance,
+      'url': this.url,
+      'name': this.name,
     } as Map<String, dynamic>;
   }
 

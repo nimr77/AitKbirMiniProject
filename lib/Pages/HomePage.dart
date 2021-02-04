@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:image_ui_search/Controllers/MySearchController.dart';
 import 'package:image_ui_search/Functions/MyConverters.dart';
 import 'package:image_ui_search/Models/SearchResults.dart';
+import 'package:image_ui_search/Views/ImageView.dart';
 import 'package:image_ui_search/Widgets/SearchBar.dart';
 import 'package:image_ui_search/generated/l10n.dart';
 
@@ -22,15 +23,18 @@ class _MyHomePageState extends State<MyHomePage> {
       if (data != null) {
         setState(() {
           showImg = false;
+          loading = true;
         });
         bytes = await MyConverter.getHtmlBloobAs64Biyte(data);
+        await MySearchController.initSearcherIMG(data);
         setState(() {
           showImg = true;
+          loading = false;
         });
-        if (!loading)
-          setState(() {
-            loading = true;
-          });
+        // if (!loading)
+        //   setState(() {
+        //     loading = true;
+        //   });
       } else {
         setState(() {
           showImg = false;
@@ -111,9 +115,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: [
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      child: Row(
-                        children: [],
+                      height: MediaQuery.of(context).size.height * 0.8,
+                      child: Wrap(
+                        children: [
+                          for (final x in MySearchResults.listOfMe)
+                            MyImageView(mySearchItem: x)
+                        ],
                       ),
                     ),
                   ],

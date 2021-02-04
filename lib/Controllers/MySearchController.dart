@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:html';
 
+import 'package:image_ui_search/API/SearchViaImage.dart';
+import 'package:image_ui_search/Functions/MyConverters.dart';
 import 'package:image_ui_search/html/HtmlFunctions.dart';
 
 class MySearchController {
@@ -27,13 +29,10 @@ class MySearchController {
     img.sink.add(null);
   }
 
-  static theSearcherIMG() {
-    myImgSub.onData((data) async {
-      if (data != null) {
-        // request via API
-        // notify the streamer
-
-      }
-    });
+  static initSearcherIMG(data) async {
+    // request via API
+    var bit = await MyConverter.getHtmlBloobAs64Biyte(data);
+    await MySearchViaImage.search(bit);
+    // notify the streamer
   }
 }

@@ -15,7 +15,7 @@ class _MyImageViewState extends State<MyImageView> {
   bool loading = true;
 
   loadImage() {
-    imProvider = NetworkImage(widget.mySearchItem.imageUrl);
+    imProvider = NetworkImage(widget.mySearchItem.url);
     setState(() {
       loading = true;
     });
@@ -60,7 +60,7 @@ class _MyImageViewState extends State<MyImageView> {
                           ),
                           // the title
                           Text(
-                            widget.mySearchItem.title,
+                            widget.mySearchItem.name,
                             style: Theme.of(context)
                                 .textTheme
                                 .headline4
